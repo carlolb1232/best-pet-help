@@ -35,7 +35,7 @@ const Register = () => {
     return (
         <div>
             {errors.map((err, index) => <div className="alert alert-danger" role="alert" key={index}>{err}</div>)}
-            <RegisterForm firstName="" lastName="" email="" password="" confirmPassword="" onSubmitProp={registrarUsuario} ></RegisterForm>
+            <RegisterForm names="" lastName="" email="" password="" confirmPassword="" onSubmitProp={registrarUsuario} ></RegisterForm>
         </div>
     );
 }

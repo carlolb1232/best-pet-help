@@ -4,20 +4,20 @@ import * as Yup from "yup";
 
 const RegisterForm = (props) => {
 
-    const {firstName,lastName,email,password,confirmPassword,onSubmitProp}=props;
+    const {names,lastName,email,password,confirmPassword,onSubmitProp}=props;
     
     return (
         <div >
           <Formik
           initialValues={{
-          firstName : firstName,
+          names : names,
           lastName:lastName,
           email:email,
           password:password,
           confirmPassword:confirmPassword,
         }}
         validationSchema={Yup.object().shape({
-            firstName: Yup.string()
+            names: Yup.string()
             .min(3, "Tu nombre es muy corto")
             .required ("Por favor ingresa tu nombre"),
             
@@ -58,9 +58,9 @@ const RegisterForm = (props) => {
             <div>
                 <h1>REGISTRO</h1>
                 <Form className= "contact" method= "post" onSubmit={handleSubmit}>
-                    <label htmlFor="firstName" className="col-sm-2 col-form-label">Nombre</label>
-                    <Field id='firstName'type="text" className="form-control" placeholder="Nombre" name='firstName'/>
-                    {errors.firstName && touched.firstName && <p>{errors.firstName}</p>}
+                    <label htmlFor="names" className="col-sm-2 col-form-label">Nombres</label>
+                    <Field id='names'type="text" className="form-control" placeholder="Nombres" name='names'/>
+                    {errors.names && touched.names && <p>{errors.names}</p>}
         
                     <label htmlFor="lastName" className="col-sm-2 col-form-label">Apellido</label>
                     <Field  id='lastName' type="text" placeholder="Apellido" className="form-control" name='lastName'/>

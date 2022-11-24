@@ -11,7 +11,7 @@ const Main = () => {
 
     const renderInfo=()=>{
         if(user){
-            return (<>USUARIO LOGGUEADO: {user.firstName} {user.lastName} </>)
+            return (<>USUARIO LOGGUEADO: {user.names} {user.lastName} </>)
         }else{
             return(<>NO HAY USUARIO LOGGUEADO</>)
         }
