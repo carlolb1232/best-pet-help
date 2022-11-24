@@ -28,7 +28,8 @@ const UserSchema = new mongoose.Schema({
     rol:{
         type:String,
         default:"patient"
-    }
+    },
+    pets:[{type:mongoose.Schema.Types.ObjectId,ref:"Pet"}]
 },
 {timestamps:true});
 
