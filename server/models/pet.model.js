@@ -17,6 +17,7 @@ const PetSchema = new mongoose.Schema({
         type:String,
         required:[true,"Por favor ingresar contraseña"],
     },
+    appointments:[{type:mongoose.Schema.Types.ObjectId,ref:"Appointment"}]
 },
 {timestamps:true});
 
