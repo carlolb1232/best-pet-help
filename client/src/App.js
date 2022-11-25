@@ -8,6 +8,7 @@ import { UserProvider } from "./contexts/userContext";
 import {useUser} from "./contexts/userContext"
 import Detail from "./views/Detail";
 import NavBar from "./components/NavBar";
+import CreatePet from "./views/CreatePet";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Main/ >}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/pet" element={<CreatePet />}></Route>
         </Routes>
       </UserProvider>
     </div>

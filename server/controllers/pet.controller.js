@@ -8,10 +8,10 @@ module.exports.createPet = async(req,res)=>{
         const user = await User.findById(idUser).exec();
         user.pets.push(pet);
         await user.save();
-        res.json(pet);
+        res.json({message:"", pet:pet});
     }
     catch(err){
-        res.json(err)
+        res.json({message:"Algo salio mal",errors:err.errors})
     }
 }
 

@@ -27,6 +27,24 @@
   width: 80%;
 }
 
+.services-container{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-container img{
+  width: 150px;
+  height: 150px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
