@@ -1,12 +1,30 @@
-.App {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar p{
+  margin: 0;
+}
+
+.nav a{
+  color: black;
+}
+
+.main-image{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-image img{
+  width: 80%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

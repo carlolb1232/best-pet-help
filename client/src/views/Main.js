@@ -1,35 +1,25 @@
 import React from 'react';
-import {useUser} from "../contexts/userContext"
-import { useNavigate } from 'react-router-dom';
-import logout from '../services/logout';
-import Detail from './Detail';
+import animales from "../assets/fondo-animal.jpg"
 
 
 const Main = () => {
 
-    const {user,setUser} = useUser();
-
-    const renderInfo=()=>{
-        if(user){
-            return (<>USUARIO LOGGUEADO: {user.names} {user.lastName} </>)
-        }else{
-            return(<>NO HAY USUARIO LOGGUEADO</>)
-        }
-    }
-
-    const logOut = async() => {
-        const {success} = await logout();
-        if(success) setUser(null)
-        else window.alert("Error. No se pude desloguear")
-    }
-
 
     return (
-        <div>
-            <h1>ESTE CAMBIO SE HIZO POST DEPLOY</h1>
-            <h2>{renderInfo()} </h2>
-            {user && <button onClick={logOut}>LOGOUT</button>}
-            {user && <Detail></Detail> }
+        <div className='container mt-5'>
+            <div className="main-image">
+                <img src={animales} alt="animales" />
+            </div>
+            <div className="description-container">
+                <h2>Descripción:</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea esse laborum ratione? Eius error odit reiciendis nobis, ducimus possimus consequatur ut officiis sequi quia doloremque fugit deserunt ea iure, dolore qui libero amet numquam rerum reprehenderit nesciunt? Distinctio reprehenderit tempore dolor animi totam veritatis eos qui officiis, est doloribus enim ducimus, velit, sequi sapiente labore sit quo temporibus impedit veniam dolore maiores vel accusantium! Dolorem ullam recusandae ea aperiam nemo in, commodi, nobis id at accusantium natus quae, obcaecati quaerat quibusdam sit. Nesciunt ea similique, quidem commodi odit, laudantium, assumenda delectus eveniet suscipit accusantium qui vero blanditiis porro veniam debitis aliquam a eius et amet facere iure id excepturi voluptatem dignissimos! Beatae, voluptatibus aut dolores, at id saepe ea, tempora temporibus repudiandae perferendis numquam! Fuga quidem neque, reprehenderit tenetur blanditiis voluptates dolorem ut magnam, voluptate magni maiores cum quasi dolor in, deleniti voluptatum pariatur delectus nihil quisquam ipsum similique fugit?</p>
+            </div>
+            <div className="services-container">
+                <div className="service-container">
+                    <img src="" alt="" />
+                    <p>CONSULTAS</p>
+                </div>
+            </div>
         </div>
     );
 }

@@ -34,7 +34,9 @@ const Login = () => {
     return (
         <div>
             {errors.map((err, index) => <div className={`alert alert-danger`} role="alert" key={index}>{err}</div>)}
-            <LoginForm onSubmitProp={loginUsuario} ></LoginForm>
+            <div className="container">
+                <LoginForm onSubmitProp={loginUsuario} ></LoginForm>
+            </div>
         </div>
     );
 }
