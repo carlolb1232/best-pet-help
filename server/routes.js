@@ -16,6 +16,7 @@ module.exports = function(app){
     // PET
     app.post("/api/pet", PetController.createPet);
     app.get("/api/pet/:idUser", PetController.getPetsFromUser);
+    app.get("/api/pet/one/:id", PetController.findOne);
 
     // APPOINTMENTS
     app.post("/api/appointment/", AppointmentController.createAppointment);

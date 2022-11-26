@@ -41,11 +41,11 @@ const LoginForm = (props) => {
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="email" className="col-form-label">Correo Electrónico</label>
                 <Field id='email' type="text" placeholder="Email" className={`form-control`} name='email' />
-                {errors.email && touched.email && <p>{errors.email}</p>}
+                {errors.email && touched.email && <p className={`alert alert-danger`}>{errors.email}</p>}
 
                 <label htmlFor="password" className="col-sm-2 col-form-label">Contraseña</label>
                 <Field id='password' type="password" placeholder="Contraseña" className={`form-control`} name='password' />
-                {errors.password && touched.password && <p>{errors.password}</p>}
+                {errors.password && touched.password && <p className={`alert alert-danger`}>{errors.password}</p>}
                 <br></br>
                 <button className='btn btn-primary btn-lg' type="submit" disabled={Object.values(errors).length > 0}>Login</button>
               </Form>

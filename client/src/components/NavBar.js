@@ -48,12 +48,12 @@ const NavBar = () => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <Link to={"/"} className="dropdown-item">
+                  <Link to={"/pet"} className="dropdown-item">
                     Crear mascota
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/"} className="dropdown-item">
+                  <Link to={"/pets"} className="dropdown-item">
                     Crear Cita
                   </Link>
                 </li>

@@ -29,7 +29,7 @@ const CreatePet = () => {
         setErrors(errorArr);
       }
     } catch (err) {
-
+      console.log(err)
     }
   }
 
