@@ -5,6 +5,10 @@ const AppointmentSchema = new mongoose.Schema({
         type:String,
         required:[true,"El nombre es obligatorio"]
     },
+    petName:{
+        type:String,
+        required:[true,"El nombre es obligatorio"]
+    },
     date:{
         type:String,
         required:[true,"El apellido es obligatorio"]

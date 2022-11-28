@@ -58,6 +58,11 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to={"/appointments"} className="dropdown-item">
+                    Ver citas
+                  </Link>
+                </li>
+                <li>
                   <button onClick={logOut} className="dropdown-item">
                     LogOut
                   </button>

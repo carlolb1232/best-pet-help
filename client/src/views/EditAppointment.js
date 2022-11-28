@@ -1,36 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import AppointmentForm from "../components/AppointmentForm";
-import { simpleGet } from "../services/simpleGet";
-import { simplePost } from "../services/simplePost";
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import AppointmentForm from '../components/AppointmentForm';
 
-const CreateAppointment = () => {
-  const { idPet } = useParams();
+const EditAppointment = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState([])
 
-  const [pet, setPet] = useState();
+  const [appointment, setAppointment] = useState();
 
-  const getPet = async() =>{
+  const getAppointment = async () => {
     try {
-      const response = await simpleGet(`/api/pet/one/${idPet}`)
-      console.log("mascota",response.data.pet)
-      setPet(response.data.pet)
+      const response = await simpleGet(`/api/appointment/one/${id}`)
+      console.log("Appoitment", response.data.appointment)
+      setAppointment(response.data.appointment)
     } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
-    getPet()
+    getAppointment()
   }, []);
 
-  const createAppointment = async (values) => {
+  const editAppointment = async (values) => {
     try {
-      values.idPet = idPet;
-      values.petName = pet.nickName ;
-      const response = await simplePost("/api/appointment/", values);
+      const response = await simplePost(`/api/appointment/edit/${id}`, values);
       console.log(response.data);
       if (response.data.message === "") {
         navigate("/");
@@ -50,15 +46,18 @@ const CreateAppointment = () => {
   };
   return (
     <div className="container">
-      <h2>Crear cita para mascota: {idPet}</h2>
+      <h2>Editar cita para mascota:</h2>
       {errors.map((err, index) => (
         <div className="alert alert-danger" role="alert" key={index}>
           {err}
         </div>
       ))}
-      <AppointmentForm description="" date="" hour="" onSubmitProp={createAppointment} />
+      {
+        appointment&&
+        <AppointmentForm description={appointment.description} date={appointment.date} hour={appointment.hour} onSubmitProp={editAppointment} />
+      }
     </div>
   );
-};
+}
 
-export default CreateAppointment;
+export default EditAppointment;

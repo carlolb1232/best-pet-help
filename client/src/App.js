@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import CreatePet from "./views/CreatePet";
 import PetsList from "./views/PetsList";
 import CreateAppointment from "./views/CreateAppointment";
+import AppointmentsList from "./views/AppointmentsList";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/pet" element={<CreatePet />} />
           <Route path="/pets" element={<PetsList />} />
           <Route path="/pet/:idPet" element={<CreateAppointment />} />
+          <Route path="/appointments" element={<AppointmentsList />} />
         </Routes>
       </UserProvider>
     </div>

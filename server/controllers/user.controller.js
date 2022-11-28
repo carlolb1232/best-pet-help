@@ -1,6 +1,8 @@
 const { User } = require("../models/user.model")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { Appointment } = require("../models/appointment.model");
+const { Pet } = require("../models/pet.model");
 
 module.exports.Register = async (req, res) => {
   try {
@@ -10,7 +12,7 @@ module.exports.Register = async (req, res) => {
     const jwtToken = jwt.sign({ _id: user._id }, process.env.SECRET_KEY)
 
     return res.cookie("usertoken", jwtToken, process.env.SECRET_KEY, { httpOnly: true })
-      .json({ message: "", email: user.email, _id: user._id })
+      .json({ message: "", email: user.email, _id: user._id, pets:user.pets })
   } catch (err) {
     res.json({ message: "Algo salio mal", errors: err.errors });
   }
@@ -33,7 +35,7 @@ module.exports.Login = async (req, res) => {
     const jwtToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
 
     return res.cookie("usertoken", jwtToken, process.env.SECRET_KEY, { httpOnly: true })
-      .json({ message: "", email: user.email, _id: user._id })
+      .json({ message: "", email: user.email, _id: user._id, pets:user.pets })
 
   } catch (err) {
     res.json({ message: "Algo salio mal", errors: err.errors });
@@ -58,9 +60,10 @@ module.exports.getAll = (request, response) => {
 module.exports.getUser = async (req, res) => {
   try {
     const { id } = req.params
-    const { email, names, lastName, _id } = await User.findById(id).exec();
-    res.json({ email, names, lastName, _id })
+    const { email, names, lastName, _id, pets } = await User.findById(id).exec();
+    res.json({ email, names, lastName, _id, pets })
   } catch (err) {
     return { success: false, data: err.message }
   }
 }
+
