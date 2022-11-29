@@ -21,7 +21,6 @@ module.exports = function(app){
     // APPOINTMENTS
     app.post("/api/appointment/", AppointmentController.createAppointment);
     app.get("/api/appointment/:idPet", AppointmentController.getAppointmentsFromPet);
-    app.get("/api/appointments/:idUser", AppointmentController.getAppointmentsFromPets);
     app.get("/api/appointment/one/:id", AppointmentController.findOne);
-    app.get("/api/appointment/edit/:id", AppointmentController.editOne);
+    app.put("/api/appointment/edit/:id", AppointmentController.editOne);
 }

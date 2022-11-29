@@ -14,7 +14,7 @@ const CreateAppointment = () => {
 
   const getPet = async() =>{
     try {
-      const response = await simpleGet(`/api/pet/one/${idPet}`)
+      const response = await simpleGet(`http://localhost:8000/api/pet/one/${idPet}`)
       console.log("mascota",response.data.pet)
       setPet(response.data.pet)
     } catch (err) {
@@ -30,7 +30,7 @@ const CreateAppointment = () => {
     try {
       values.idPet = idPet;
       values.petName = pet.nickName ;
-      const response = await simplePost("/api/appointment/", values);
+      const response = await simplePost("http://localhost:8000/api/appointment/", values);
       console.log(response.data);
       if (response.data.message === "") {
         navigate("/");
@@ -56,7 +56,7 @@ const CreateAppointment = () => {
           {err}
         </div>
       ))}
-      <AppointmentForm description="" date="" hour="" onSubmitProp={createAppointment} />
+      <AppointmentForm description="" date="" hour="" onSubmitProp={createAppointment} txt={"CREAR CITA"}/>
     </div>
   );
 };

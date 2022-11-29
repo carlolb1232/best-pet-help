@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import { simpleGet } from "../services/simpleGet";
 
 const AppointmentsList = () => {
   const { user, setUser } = useUser();
   const [citas, setCitas] = useState([]);
+  const navigate = useNavigate();
 
   // const getPets = async()=>{
   //   try {
@@ -25,34 +27,49 @@ const AppointmentsList = () => {
   //     console.log(err);
   //   }
   // };
-  
+
   useEffect(() => {
-    user.pets.map(async (idPet, idx)=>{
+    user.pets.map(async (idPet, idx) => {
       // await getAppointments(pet, idx)
       try {
-        const response = await simpleGet(`/api/appointment/${idPet}`);
+        const response = await simpleGet(`http://localhost:8000/api/appointment/${idPet}`);
         console.log(`cita ${idx}`, response.data.appointments);
-        setCitas((oldCitas)=>[...oldCitas,...response.data.appointments]);
+        setCitas((oldCitas) => [...oldCitas, ...response.data.appointments]);
       } catch (err) {
         console.log(err);
       }
-    })
+    });
   }, []);
 
   useEffect(() => {
-    citas&&
-    console.log("citas del efect",citas)
+    citas && console.log("citas del efect", citas);
   }, [citas]);
 
   return (
-    <div>
-      {citas?.map((appointment) => {
-        return (
-          <div>
-            <p key={appointment._id}>{appointment.petName} | {appointment.date}</p>
-          </div>
-        );
-      })}
+    <div className="container mt-5">
+      <table className="table table-striped table-bordered border-dark">
+        <thead>
+          <tr>
+            <th>Nombre de la mascota</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {citas?.map((appointment) => {
+            return (
+              <tr key={appointment._id}>
+                <td>{appointment.petName}</td>
+                <td>{appointment.date}</td>
+                <td>
+                  <button className="btn btn-warning" onClick={()=>navigate(`/appointment/${appointment._id}`)}>EDITAR</button>
+                  <button className="btn btn-danger">BORRAR</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };

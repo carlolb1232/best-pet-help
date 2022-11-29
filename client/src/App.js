@@ -9,6 +9,7 @@ import CreatePet from "./views/CreatePet";
 import PetsList from "./views/PetsList";
 import CreateAppointment from "./views/CreateAppointment";
 import AppointmentsList from "./views/AppointmentsList";
+import EditAppointment from "./views/EditAppointment";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/pets" element={<PetsList />} />
           <Route path="/pet/:idPet" element={<CreateAppointment />} />
           <Route path="/appointments" element={<AppointmentsList />} />
+          <Route path="/appointment/:id" element={<EditAppointment />} />
         </Routes>
       </UserProvider>
     </div>

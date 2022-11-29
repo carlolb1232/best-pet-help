@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 const AppointmentForm = (props) => {
 
-  const { description, date, hour, onSubmitProp } = props;
+  const { description, date, hour, onSubmitProp, txt } = props;
 
   return (
     <div >
@@ -40,7 +40,6 @@ const AppointmentForm = (props) => {
         }) => {
           return (
             <div>
-              <h2>REGISTRO</h2>
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="description" className="col-sm-2 col-form-label">Descripción</label>
                 <Field id='description' as="textarea" type="text" className="form-control" placeholder="Descripción" name='description' />
@@ -54,7 +53,7 @@ const AppointmentForm = (props) => {
                 <Field id='hour' type="text" placeholder="Hora" className="form-control" name='hour' />
                 {errors.hour && touched.hour && <p className={`alert alert-danger`}>{errors.hour}</p>}
                 <br></br>
-                <button className='btn btn-primary btn-lg' type="submit" disabled={Object.values(errors).length > 0}>Crear Cita</button>
+                <button className='btn btn-primary btn-lg' type="submit" disabled={Object.values(errors).length > 0}>{txt}</button>
               </Form>
             </div>
           );

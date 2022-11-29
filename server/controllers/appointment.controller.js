@@ -27,31 +27,6 @@ module.exports.getAppointmentsFromPet = async (req, res) => {
   }
 }
 
-const a = async(idPet)=>{
-  try {
-    const pet = await Pet.findById(idPet).populate("appointments").exec();
-    console.log("Appointments del pet", pet.appointments);
-    return pet.appointments
-  } catch (err) {
-    res.json({ message: "", appointments: totalAppointments })
-  }
-}
-
-module.exports.getAppointmentsFromPets = async (req, res)=>{
-  try {
-    const { idUser } = req.params;
-    const user = await User.findById(idUser).populate("pets").exec();
-    totalPets = user.pets
-    let totalAppointments = []
-    user.pets.map(pet=>{
-      totalAppointments.concat(a(pet._id))
-    })
-    res.json({ message: "", appointments: totalAppointments })
-  } catch (err) {
-    res.json({ message: "Algo salio mal", errors: err.errors })
-  }
-}
-
 module.exports.findOne = (req, res) => {
   const { id } = req.params
   Appointment.findOne({ _id: id })

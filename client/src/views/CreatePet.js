@@ -15,7 +15,7 @@ const CreatePet = () => {
   const createPet = async (values) => {
     try {
       values.idUser=user._id;
-      const response = await simplePost("/api/pet", values)
+      const response = await simplePost("http://localhost:8000/api/pet", values)
       console.log(response.data);
       user.pets.push(response.data.pet._id)
       if (response.data.message === "") {

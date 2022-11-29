@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import AppointmentForm from '../components/AppointmentForm';
+import { simpleGet } from '../services/simpleGet';
+import { simplePut } from '../services/simplePut';
 
 const EditAppointment = () => {
   const { id } = useParams();
@@ -26,7 +28,7 @@ const EditAppointment = () => {
 
   const editAppointment = async (values) => {
     try {
-      const response = await simplePost(`/api/appointment/edit/${id}`, values);
+      const response = await simplePut(`http://localhost:8000/api/appointment/edit/${id}`, values);
       console.log(response.data);
       if (response.data.message === "") {
         navigate("/");
@@ -54,7 +56,7 @@ const EditAppointment = () => {
       ))}
       {
         appointment&&
-        <AppointmentForm description={appointment.description} date={appointment.date} hour={appointment.hour} onSubmitProp={editAppointment} />
+        <AppointmentForm description={appointment.description} date={appointment.date} hour={appointment.hour} onSubmitProp={editAppointment} txt={"EDITAR CITA"}/>
       }
     </div>
   );
