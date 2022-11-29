@@ -34,7 +34,7 @@ const PetsList = () => {
         </Link>
         {pets?.map((pet) => {
           return (
-            <Link to={`/pet/${pet._id}`} className="pet-container">
+            <Link to={`/pet/${pet._id}`} className="pet-container" key={pet._id}>
               <div className="pet">{pet.nickName}</div>
               <p>SACAR CITA A MASCOTA</p>
             </Link>

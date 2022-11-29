@@ -10,12 +10,8 @@ const AppointmentSchema = new mongoose.Schema({
         required:[true,"El nombre es obligatorio"]
     },
     date:{
-        type:String,
+        type:Date,
         required:[true,"El apellido es obligatorio"]
-    },
-    hour:{
-        type:String,
-        required:[true,"El email es obligatorio"],
     },
 },
 {timestamps:true});

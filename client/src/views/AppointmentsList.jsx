@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import { simpleGet } from "../services/simpleGet";
+import moment from 'moment';
+
 
 const AppointmentsList = () => {
   const { user, setUser } = useUser();
@@ -60,7 +62,7 @@ const AppointmentsList = () => {
             return (
               <tr key={appointment._id}>
                 <td>{appointment.petName}</td>
-                <td>{appointment.date}</td>
+                <td>{moment(appointment.date).format('YYYY-MM-DD')}</td>
                 <td>
                   <button className="btn btn-warning" onClick={()=>navigate(`/appointment/${appointment._id}`)}>EDITAR</button>
                   <button className="btn btn-danger">BORRAR</button>

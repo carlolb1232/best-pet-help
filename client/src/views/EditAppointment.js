@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AppointmentForm from '../components/AppointmentForm';
 import { simpleGet } from '../services/simpleGet';
 import { simplePut } from '../services/simplePut';
+import moment from 'moment';
+
 
 const EditAppointment = () => {
   const { id } = useParams();
@@ -56,7 +58,7 @@ const EditAppointment = () => {
       ))}
       {
         appointment&&
-        <AppointmentForm description={appointment.description} date={appointment.date} hour={appointment.hour} onSubmitProp={editAppointment} txt={"EDITAR CITA"}/>
+        <AppointmentForm description={appointment.description} date={moment(appointment.date).format('YYYY-MM-DD')} onSubmitProp={editAppointment} txt={"EDITAR CITA"}/>
       }
     </div>
   );

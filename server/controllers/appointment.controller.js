@@ -4,8 +4,8 @@ const { User } = require("../models/user.model");
 
 module.exports.createAppointment = async (req, res) => {
   try {
-    const { description,petName, date, hour, idPet } = req.body;
-    const appointment = await Appointment.create({ description, petName, date, hour });
+    const { description,petName, date, idPet } = req.body;
+    const appointment = await Appointment.create({ description, petName, date});
     const pet = await Pet.findById(idPet).exec();
     pet.appointments.push(appointment);
     await pet.save();
