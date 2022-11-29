@@ -32,7 +32,7 @@ const AppointmentsList = () => {
     user.pets.map(async (idPet, idx) => {
       // await getAppointments(pet, idx)
       try {
-        const response = await simpleGet(`http://localhost:8000/api/appointment/${idPet}`);
+        const response = await simpleGet(`/api/appointment/${idPet}`);
         console.log(`cita ${idx}`, response.data.appointments);
         setCitas((oldCitas) => [...oldCitas, ...response.data.appointments]);
       } catch (err) {

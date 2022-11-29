@@ -28,7 +28,7 @@ const EditAppointment = () => {
 
   const editAppointment = async (values) => {
     try {
-      const response = await simplePut(`http://localhost:8000/api/appointment/edit/${id}`, values);
+      const response = await simplePut(`/api/appointment/edit/${id}`, values);
       console.log(response.data);
       if (response.data.message === "") {
         navigate("/");
