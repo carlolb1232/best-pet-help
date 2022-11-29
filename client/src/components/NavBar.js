@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import logout from "../services/logout";
 
 const NavBar = () => {
   const { user, setUser } = useUser();
+  const navigate = useNavigate()
 
 
   const logOut = async () => {
     const { success } = await logout();
-    if (success) setUser(null)
-    else window.alert("Error. No se pude desloguear")
+    if (success) {
+      setUser(null)
+      navigate("/")
+    }else{
+      window.alert("Error. No se pude desloguear")
+    }
+    // if (success)setUser(null)
+    // else window.alert("Error. No se pude desloguear")
   }
   return (
     <nav className="navbar navbar-expand-lg bg-primary">

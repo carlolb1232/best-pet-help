@@ -6,7 +6,7 @@ import { simplePost } from '../services/simplePost';
 
 const CreatePet = () => {
 
-  const { user } = useUser();
+  const { user,setUser } = useUser();
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState([])
@@ -17,7 +17,9 @@ const CreatePet = () => {
       values.idUser=user._id;
       const response = await simplePost("/api/pet", values)
       console.log(response.data);
+      user.pets.push(response.data.pet._id)
       if (response.data.message === "") {
+        setUser({...user})
         navigate("/")
       } else {
         const errorResponse = response.data.errors; // Get the errors from err.response.data
