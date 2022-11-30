@@ -10,6 +10,8 @@ import PetsList from "./views/PetsList";
 import CreateAppointment from "./views/CreateAppointment";
 import AppointmentsList from "./views/AppointmentsList";
 import EditAppointment from "./views/EditAppointment";
+import TotalAppointmentsList from "./views/TotalAppointmentsList";
+import AppointmentDetail from "./views/AppointmentDetail";
 
 function App() {
 
@@ -29,6 +31,8 @@ function App() {
           <Route path="/pet/:idPet" element={<CreateAppointment />} />
           <Route path="/appointments" element={<AppointmentsList />} />
           <Route path="/appointment/:id" element={<EditAppointment />} />
+          <Route path="/appointment/detail/:id" element={<AppointmentDetail />} />
+          <Route path="/appointment/pets" element={<TotalAppointmentsList />} />
         </Routes>
       </UserProvider>
     </div>

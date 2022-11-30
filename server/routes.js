@@ -23,4 +23,5 @@ module.exports = function(app){
     app.get("/api/appointment/:idPet", AppointmentController.getAppointmentsFromPet);
     app.get("/api/appointment/one/:id", AppointmentController.findOne);
     app.put("/api/appointment/edit/:id", AppointmentController.editOne);
+    app.get("/api/appointments/pets", AppointmentController.getallPetsAndAppointments);
 }

@@ -27,6 +27,16 @@ module.exports.getAppointmentsFromPet = async (req, res) => {
   }
 }
 
+module.exports.getallPetsAndAppointments = async (req, res) => {
+  try {
+    const pet = await Pet.find({}).populate("appointments").exec();
+    console.log("Appointments", pet.appointments);
+    res.json({ message: "", pets: pet })
+  } catch (err) {
+    res.json({ message: "Algo salio mal", errors: err.errors })
+  }
+}
+
 module.exports.findOne = (req, res) => {
   const { id } = req.params
   Appointment.findOne({ _id: id })

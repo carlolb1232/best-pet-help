@@ -74,6 +74,11 @@ const NavBar = () => {
                     LogOut
                   </button>
                 </li>
+                <li>
+                  <Link to={"/appointment/pets"} className="dropdown-item">
+                    Ver citas totales
+                  </Link>
+                </li>
               </ul>
             </li>
           )}

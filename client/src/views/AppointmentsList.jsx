@@ -65,6 +65,7 @@ const AppointmentsList = () => {
                 <td>{moment(appointment.date).format('YYYY-MM-DD')}</td>
                 <td>
                   <button className="btn btn-warning" onClick={()=>navigate(`/appointment/${appointment._id}`)}>EDITAR</button>
+                  <button className="btn btn-info" onClick={()=>navigate(`/appointment/detail/${appointment._id}`)}>DETALLES</button>
                   <button className="btn btn-danger">BORRAR</button>
                 </td>
               </tr>
