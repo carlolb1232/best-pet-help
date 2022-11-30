@@ -13,6 +13,13 @@ const AppointmentSchema = new mongoose.Schema({
         type:Date,
         required:[true,"El apellido es obligatorio"]
     },
+    status:{
+        type:String,
+        default: "Espera"
+    },
+    hour:{
+        type:String,
+    }
 },
 {timestamps:true});
 
