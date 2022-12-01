@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import { simpleGet } from "../services/simpleGet";
+import mas from "../assets/mas.png"
 
 const PetsList = () => {
   const { user, setUser } = useUser();
@@ -28,8 +29,8 @@ const PetsList = () => {
         SELECCIONE A SU MASCOTA SEÑOR {user.names} {user.lastName} {user._id}:
       </h2>
       <div className="pets-container">
-        <Link className="pet-container">
-          <div className="pet">+</div>
+        <Link to={"/pet"} className="pet-container">
+          <img src={mas} className="pet mas" />
           <p>Crear mascota</p>
         </Link>
         {pets?.map((pet) => {

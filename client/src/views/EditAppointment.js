@@ -58,7 +58,7 @@ const EditAppointment = () => {
       ))}
       {
         appointment&&
-        <AppointmentForm description={appointment.description} date={moment(appointment.date).format('YYYY-MM-DD')} onSubmitProp={editAppointment} txt={"EDITAR CITA"}/>
+        <AppointmentForm description={appointment.description} date={moment(appointment.date).add('days', 1).format('YYYY-MM-DD')} onSubmitProp={editAppointment} txt={"EDITAR CITA"}/>
       }
     </div>
   );

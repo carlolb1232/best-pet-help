@@ -1,24 +1,23 @@
-import React from 'react';
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import logout from "../services/logout";
 
 const NavBar = () => {
   const { user, setUser } = useUser();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const logOut = async () => {
     const { success } = await logout();
     if (success) {
-      setUser(null)
-      navigate("/")
-    }else{
-      window.alert("Error. No se pude desloguear")
+      setUser(null);
+      navigate("/");
+    } else {
+      window.alert("Error. No se pude desloguear");
     }
     // if (success)setUser(null)
     // else window.alert("Error. No se pude desloguear")
-  }
+  };
   return (
     <nav className="navbar navbar-expand-lg bg-primary">
       <div className="container">
@@ -53,39 +52,52 @@ const NavBar = () => {
               >
                 {user.names} {user.lastName}
               </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link to={"/pet"} className="dropdown-item">
-                    Crear mascota
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/pets"} className="dropdown-item">
-                    Crear Cita
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/appointments"} className="dropdown-item">
-                    Ver citas
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={logOut} className="dropdown-item">
-                    LogOut
-                  </button>
-                </li>
-                <li>
-                  <Link to={"/appointment/pets"} className="dropdown-item">
-                    Ver citas totales
-                  </Link>
-                </li>
-              </ul>
+              {
+                user.rol==="dentist"&&
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to={"/appointment/pets"} className="dropdown-item">
+                      Ver citas totales
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={logOut} className="dropdown-item">
+                      LogOut
+                    </button>
+                  </li>
+                </ul>
+              }
+              {
+                user.rol==="patient"&&
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to={"/pet"} className="dropdown-item">
+                      Crear mascota
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={"/pets"} className="dropdown-item">
+                      Crear Cita
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={"/appointments"} className="dropdown-item">
+                      Ver citas
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={logOut} className="dropdown-item">
+                      LogOut
+                    </button>
+                  </li>
+                </ul>
+              }
             </li>
           )}
         </ul>
       </div>
     </nav>
   );
-}
+};
 
 export default NavBar;

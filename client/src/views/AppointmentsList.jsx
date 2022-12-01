@@ -62,7 +62,7 @@ const AppointmentsList = () => {
             return (
               <tr key={appointment._id}>
                 <td>{appointment.petName}</td>
-                <td>{moment(appointment.date).format('YYYY-MM-DD')}</td>
+                <td>{moment(appointment.date).add('days', 1).format('YYYY-MM-DD')}</td>
                 <td>
                   <button className="btn btn-warning" onClick={()=>navigate(`/appointment/${appointment._id}`)}>EDITAR</button>
                   <button className="btn btn-info" onClick={()=>navigate(`/appointment/detail/${appointment._id}`)}>DETALLES</button>

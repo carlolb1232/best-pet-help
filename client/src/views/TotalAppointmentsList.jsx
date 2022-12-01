@@ -54,7 +54,7 @@ const TotalAppointmentsList = () => {
             return (
               <tr key={appointment._id}>
                 <td>{appointment.petName}</td>
-                <td>{moment(appointment.date).format('YYYY-MM-DD')}</td>
+                <td>{moment(appointment.date).add('days', 1).format('YYYY-MM-DD')}</td>
                 <td>
                   <button className="btn btn-info" onClick={()=>navigate(`/appointment/detail/${appointment._id}`)} >Detalles</button>
                   <button className="btn btn-danger">Borrar</button>

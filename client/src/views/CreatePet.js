@@ -20,7 +20,7 @@ const CreatePet = () => {
       user.pets.push(response.data.pet._id)
       if (response.data.message === "") {
         setUser({...user})
-        navigate("/")
+        navigate("/pets")
       } else {
         const errorResponse = response.data.errors; // Get the errors from err.response.data
         const errorArr = []; // Define a temp error array to push the messages in

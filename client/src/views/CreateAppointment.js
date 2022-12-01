@@ -35,7 +35,7 @@ const CreateAppointment = () => {
       const response = await simplePost("http://localhost:8000/api/appointment/", values);
       console.log(response.data);
       if (response.data.message === "") {
-        navigate("/");
+        navigate("/appointments");
       } else {
         const errorResponse = response.data.errors; // Get the errors from err.response.data
         const errorArr = []; // Define a temp error array to push the messages in
