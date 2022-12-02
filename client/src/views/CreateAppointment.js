@@ -52,13 +52,15 @@ const CreateAppointment = () => {
   };
   return (
     <div className="container">
-      <h2>Crear cita para mascota: {idPet}</h2>
+      <div className="forms-container">
+      <h2>Crear cita para mascota: {pet?.nickName}</h2>
       {errors.map((err, index) => (
         <div className="alert alert-danger" role="alert" key={index}>
           {err}
         </div>
       ))}
       <AppointmentForm description="" date={moment().format('YYYY-MM-DD')} onSubmitProp={createAppointment} txt={"CREAR CITA"}/>
+      </div>
     </div>
   );
 };

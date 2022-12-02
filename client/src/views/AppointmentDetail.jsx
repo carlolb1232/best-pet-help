@@ -11,6 +11,7 @@ const AppointmentDetail = () => {
   const { id } = useParams();
 
   const [hour, setHour] = useState();
+  const [observacion, setObservacion] = useState();
 
   const [appointment, setAppointment] = useState();
 
@@ -45,13 +46,26 @@ const AppointmentDetail = () => {
     }
     updateHour(newHour)
   }
+  
+  const handleSubmit2 = (e) => {
+    e.preventDefault()
+    let newObservacion = {
+      status: "Observada",
+      observacion:observacion
+    }
+    updateHour(newObservacion)
+  }
 
   useEffect(() => {
     hour&&console.log(hour)
   }, [hour]);
+  
+  useEffect(() => {
+    observacion&&console.log(observacion)
+  }, [observacion]);
 
   return (
-    <div className="container">
+    <div className="container appointment-detail-container">
       <h2>DETALLES DE CITA</h2>
       <h3>Nombre: {appointment?.petName}</h3>
       <p>Descripción:</p>
@@ -59,8 +73,15 @@ const AppointmentDetail = () => {
       <p>Fecha Solicitada:</p>
       <p>{moment(appointment?.date).add('days', 1).format("YYYY-MM-DD")}</p>
       {
+        appointment?.observacion!=""&&
+        <div className="observacion">
+          <p>OBSERVACIÓN:</p>
+          <p>{appointment?.observacion}</p>
+        </div>
+      }
+      {
         appointment?.hour&&
-        <p><strong> HORA DE LA CITA: {appointment?.hour}</strong></p>
+        <p className="cita-hora"><strong> HORA DE LA CITA: {appointment?.hour}</strong></p>
       }
       {
         user.rol ==="dentist"&&
@@ -77,7 +98,22 @@ const AppointmentDetail = () => {
             value="ESTABLECER HORA"
           />
         </form>
-
+      }
+      {
+        user.rol ==="dentist"&&
+        <form className="mt-5" onSubmit={(e)=>handleSubmit2(e)}>
+          <div className="form-group">
+            <label htmlFor="hour" className="form-label">
+              OBSERVAR CITA U HORA
+            </label>
+            <textarea name="observacion" className="form-control" onChange={(e)=>setObservacion(e.target.value)} />
+          </div>
+          <input
+            type="submit"
+            className="btn btn-danger mt-3"
+            value="MANDAR OBSERVACIÓN"
+          />
+        </form>
       }
     </div>
   );

@@ -36,7 +36,7 @@ const CreatePet = () => {
   }
 
   return (
-    <div>
+    <div className='forms-container'>
       {errors.map((err, index) => <div className="alert alert-danger" role="alert" key={index}>{err}</div>)}
       <div className="container">
         <PetForm nickName="" age="" specie="" race="" onSubmitProp={createPet} />

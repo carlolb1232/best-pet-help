@@ -24,9 +24,9 @@ const PetsList = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h2>
-        SELECCIONE A SU MASCOTA SEÑOR {user.names} {user.lastName} {user._id}:
+    <div className="container mt-5">
+      <h2 className="mb-5">
+      {user.names} {user.lastName}, seleccione la mascota a cual sacar la cita:
       </h2>
       <div className="pets-container">
         <Link to={"/pet"} className="pet-container">

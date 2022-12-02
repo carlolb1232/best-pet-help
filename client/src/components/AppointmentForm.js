@@ -36,7 +36,7 @@ const AppointmentForm = (props) => {
           valid,
         }) => {
           return (
-            <div>
+            <div className='form-center'>
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="description" className="col-sm-2 col-form-label">Descripción</label>
                 <Field id='description' as="textarea" type="text" className="form-control" placeholder="Descripción" name='description' />

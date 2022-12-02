@@ -42,8 +42,8 @@ const PetForm = (props) => {
           valid,
         }) => {
           return (
-            <div>
-              <h2>REGISTRO</h2>
+            <div className='form-center'>
+              <h2>REGISTRO DE NUEVA MASCOTA</h2>
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="nickName" className="col-sm-2 col-form-label">Nombre/Apodo</label>
                 <Field id='nickName' type="text" className="form-control" placeholder="Nombre/Apodo" name='nickName' />

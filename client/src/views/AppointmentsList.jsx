@@ -49,11 +49,13 @@ const AppointmentsList = () => {
 
   return (
     <div className="container mt-5">
-      <table className="table table-striped table-bordered border-dark">
+      <h2>LISTAS DE CITAS</h2>
+      <table className="table table-striped table-bordered border-dark table-light">
         <thead>
           <tr>
             <th>Nombre de la mascota</th>
             <th>Fecha</th>
+            <th>Estatus</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -63,7 +65,19 @@ const AppointmentsList = () => {
               <tr key={appointment._id}>
                 <td>{appointment.petName}</td>
                 <td>{moment(appointment.date).add('days', 1).format('YYYY-MM-DD')}</td>
-                <td>
+                {
+                  appointment.status==="Agendada"&&
+                  <td className="status-ag">{appointment.status}</td>
+                }
+                {
+                  appointment.status==="Espera"&&
+                  <td className="status-es">{appointment.status}</td>
+                }
+                {
+                  appointment.status==="Observada"&&
+                  <td className="status-ob">{appointment.status}</td>
+                }
+                <td className="spread-buttons">
                   <button className="btn btn-warning" onClick={()=>navigate(`/appointment/${appointment._id}`)}>EDITAR</button>
                   <button className="btn btn-info" onClick={()=>navigate(`/appointment/detail/${appointment._id}`)}>DETALLES</button>
                   <button className="btn btn-danger">BORRAR</button>

@@ -19,7 +19,7 @@ const NavBar = () => {
     // else window.alert("Error. No se pude desloguear")
   };
   return (
-    <nav className="navbar navbar-expand-lg bg-primary">
+    <nav className="navbar navbar-expand-lg">
       <div className="container">
         <h1>BEST PET HELP</h1>
         <ul className="nav">
@@ -56,7 +56,7 @@ const NavBar = () => {
                 user.rol==="dentist"&&
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to={"/appointment/pets"} className="dropdown-item">
+                    <Link to={"/appointment/pets"} className="dropdown-item item-dark">
                       Ver citas totales
                     </Link>
                   </li>

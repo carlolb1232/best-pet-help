@@ -50,7 +50,7 @@ const RegisterForm = (props) => {
           valid,
         }) => {
           return (
-            <div>
+            <div className='form-center'>
               <h2>REGISTRO</h2>
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="names" className="col-sm-2 col-form-label">Nombres</label>

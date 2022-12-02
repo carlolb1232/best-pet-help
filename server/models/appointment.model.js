@@ -19,6 +19,10 @@ const AppointmentSchema = new mongoose.Schema({
     },
     hour:{
         type:String,
+    },
+    observacion:{
+        type:String,
+        default: ""
     }
 },
 {timestamps:true});

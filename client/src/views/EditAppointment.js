@@ -30,6 +30,8 @@ const EditAppointment = () => {
 
   const editAppointment = async (values) => {
     try {
+      values.observacion = ""
+      values.status = "Espera"
       const response = await simplePut(`/api/appointment/edit/${id}`, values);
       console.log(response.data);
       if (response.data.message === "") {
@@ -50,7 +52,8 @@ const EditAppointment = () => {
   };
   return (
     <div className="container">
-      <h2>Editar cita para mascota:</h2>
+      <div className="forms-container">
+      <h2>Editar cita para mascota: {appointment?.petName}</h2>
       {errors.map((err, index) => (
         <div className="alert alert-danger" role="alert" key={index}>
           {err}
@@ -60,6 +63,8 @@ const EditAppointment = () => {
         appointment&&
         <AppointmentForm description={appointment.description} date={moment(appointment.date).add('days', 1).format('YYYY-MM-DD')} onSubmitProp={editAppointment} txt={"EDITAR CITA"}/>
       }
+
+      </div>
     </div>
   );
 }
