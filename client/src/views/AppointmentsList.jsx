@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import { simpleGet } from "../services/simpleGet";
 import moment from 'moment';
+import { simpleDelete } from "../services/simpleDelete";
 
 
 const AppointmentsList = () => {
   const { user, setUser } = useUser();
   const [citas, setCitas] = useState([]);
+  const [citasSort, setCitasSort] = useState([]);
   const navigate = useNavigate();
 
   // const getPets = async()=>{
@@ -44,8 +46,28 @@ const AppointmentsList = () => {
   }, []);
 
   useEffect(() => {
-    citas && console.log("citas del efect", citas);
+    citas && setCitasSort(citas.sort((a,b)=>{
+      if(a.date>b.date){
+        return 1
+      }
+      if(a.date<b.date){
+        return -1
+      }
+      return 0
+    }));
   }, [citas]);
+
+  const deleteAppointment = async (id) => {
+    try {
+      const response = await simpleDelete(`/api/appointment/delete/${id}`);
+      console.log(response.data)
+      setCitas((oldCitas)=>oldCitas.filter(appointment=>appointment._id !== id))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
 
   return (
     <div className="container mt-5">
@@ -60,7 +82,7 @@ const AppointmentsList = () => {
           </tr>
         </thead>
         <tbody>
-          {citas?.map((appointment) => {
+          {citasSort?.map((appointment) => {
             return (
               <tr key={appointment._id}>
                 <td>{appointment.petName}</td>
@@ -80,7 +102,7 @@ const AppointmentsList = () => {
                 <td className="spread-buttons">
                   <button className="btn btn-warning" onClick={()=>navigate(`/appointment/${appointment._id}`)}>EDITAR</button>
                   <button className="btn btn-info" onClick={()=>navigate(`/appointment/detail/${appointment._id}`)}>DETALLES</button>
-                  <button className="btn btn-danger">BORRAR</button>
+                  <button className="btn btn-danger" onClick={()=>deleteAppointment(appointment._id)}>BORRAR</button>
                 </td>
               </tr>
             );

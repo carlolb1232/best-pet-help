@@ -51,3 +51,10 @@ module.exports.editOne = (req, res)=>{
     .then(appointment => res.json({ message: "", appointment: appointment }))
     .catch(err => res.json({ message: "Algo salio mal", errors: err.errors }))
 }
+
+module.exports.deleteOne = (req, res) => {
+  const { id } = req.params
+  Appointment.findByIdAndDelete({_id:id})
+    .then(deleteMessage => res.json({message:"", deleteMessage: deleteMessage}))
+    .catch(err => res.json({ message: "Algo salio mal", errors: err.errors }))
+}
