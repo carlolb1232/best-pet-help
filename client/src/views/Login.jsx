@@ -12,12 +12,12 @@ const Login = () => {
   const { setUser } = useUser();
 
   const loginUsuario = async (values) => {
-    const response = await simplePost("/api/login", values);
+    const response = await simplePost("http://localhost:8000/api/login", values);
 
     if (response.data.message === "") {
       console.log("USUARIO LOGUEADO", response.data);
       const response2 = await simpleGetAuthenticated(
-        `/api/user/${response.data._id}`
+        `http://localhost:8000/api/user/${response.data._id}`
       );
       setUser(response2.data);
       Swal.fire({

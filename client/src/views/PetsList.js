@@ -11,7 +11,7 @@ const PetsList = () => {
 
   const getPets = async () => {
     try {
-      const response = await simpleGet(`/api/pet/${user._id}`);
+      const response = await simpleGet(`http://localhost:8000/api/pet/${user._id}`);
       console.log(response.data.pets);
       setPets(response.data.pets);
     } catch (err) {

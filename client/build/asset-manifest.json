@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/login/static/css/main.b11bde91.css",
+    "main.js": "/login/static/js/main.6743211c.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/login/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/fondo.png": "/login/static/media/fondo.400800ae4cd0109ca51e.png",
+    "static/media/fondo-animal2.png": "/login/static/media/fondo-animal2.e6f34e33831dfd5ad2dc.png",
+    "static/media/fondo-animal.png": "/login/static/media/fondo-animal.e1cc0c8cde15a0314566.png",
+    "static/media/fondo-animal3.png": "/login/static/media/fondo-animal3.91e7d87994c316ca8f63.png",
+    "static/media/consulta.jpg": "/login/static/media/consulta.d95b399a906ba4ad9154.jpg",
+    "static/media/cirugia.jpg": "/login/static/media/cirugia.6ef4a64fbb9ad3f667c4.jpg",
+    "static/media/aseo.jpg": "/login/static/media/aseo.780757397897acc1f037.jpg",
+    "index.html": "/login/index.html",
+    "main.b11bde91.css.map": "/login/static/css/main.b11bde91.css.map",
+    "main.6743211c.js.map": "/login/static/js/main.6743211c.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/login/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b11bde91.css",
+    "static/js/main.6743211c.js"
+  ]
+}

@@ -17,7 +17,7 @@ const EditAppointment = () => {
 
   const getAppointment = async () => {
     try {
-      const response = await simpleGet(`/api/appointment/one/${id}`)
+      const response = await simpleGet(`http://localhost:8000/api/appointment/one/${id}`)
       console.log("Appoitment", response.data.appointment)
       setAppointment(response.data.appointment)
     } catch (err) {
@@ -33,7 +33,7 @@ const EditAppointment = () => {
     try {
       values.observacion = ""
       values.status = "Espera"
-      const response = await simplePut(`/api/appointment/edit/${id}`, values);
+      const response = await simplePut(`http://localhost:8000/api/appointment/edit/${id}`, values);
       console.log(response.data);
       if (response.data.message === "") {
         Swal.fire({

@@ -19,7 +19,7 @@ const AppointmentDetail = () => {
 
   const getAppointment = async () => {
     try {
-      const response = await simpleGet(`/api/appointment/one/${id}`);
+      const response = await simpleGet(`http://localhost:8000/api/appointment/one/${id}`);
       console.log("Appoitment", response.data.appointment);
       setAppointment(response.data.appointment);
       setHour(response.data.appointment.hour)
@@ -35,7 +35,7 @@ const AppointmentDetail = () => {
 
   const updateHour = async (value) => {
     try {
-      const response = await simplePut(`/api/appointment/edit/${id}`, value);
+      const response = await simplePut(`http://localhost:8000/api/appointment/edit/${id}`, value);
       console.log(response.data)
     } catch (err) {
       console.log(err)

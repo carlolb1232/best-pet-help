@@ -14,10 +14,10 @@ const Register = () => {
 
     const registrarUsuario = async(values) => {
         console.log("VALORES DESDE EL FORMIK",values);
-        const response = await simplePost("/api/register",values);
+        const response = await simplePost("http://localhost:8000/api/register",values);
         if(response.data.message===""){
             console.log("usuario registrado",response.data);
-            const response2 = await simpleGetAuthenticated(`/api/user/${response.data._id}`)
+            const response2 = await simpleGetAuthenticated(`http://localhost:8000/api/user/${response.data._id}`)
             setUser(response2.data);
             Swal.fire({
               // position: 'top-end',

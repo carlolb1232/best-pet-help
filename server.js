@@ -8,7 +8,9 @@ app.use(cookieParser());
 require('./server/config/mongoose.config')
 // require("./server/config/connectMongoAtlas")();
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({origin: true, credentials: true}));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -44,7 +44,7 @@ const AppointmentsList = () => {
     user.pets.map(async (idPet, idx) => {
       // await getAppointments(pet, idx)
       try {
-        const response = await simpleGet(`/api/appointment/${idPet}`);
+        const response = await simpleGet(`http://localhost:8000/api/appointment/${idPet}`);
         console.log(`cita ${idx}`, response.data.appointments);
         setCitas((oldCitas) => [...oldCitas, ...response.data.appointments]);
       } catch (err) {
@@ -67,7 +67,7 @@ const AppointmentsList = () => {
 
   const deleteAppointment = async (id) => {
     try {
-      const response = await simpleDelete(`/api/appointment/delete/${id}`);
+      const response = await simpleDelete(`http://localhost:8000/api/appointment/delete/${id}`);
       swalWithBootstrapButtons.fire({
         title: '¿Está seguro de que quiere eliminar esta cita?',
         text: "No podra deshaver esta acción",

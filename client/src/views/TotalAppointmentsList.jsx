@@ -25,7 +25,7 @@ const TotalAppointmentsList = () => {
 
   const getAllPets = async () => {
     try {
-      const response = await simpleGet(`/api/appointments/pets`);
+      const response = await simpleGet(`http://localhost:8000/api/appointments/pets`);
       console.log(response.data.pets);
       setPets(response.data.pets);
     } catch (err) {
@@ -52,7 +52,7 @@ const TotalAppointmentsList = () => {
 
   const deleteAppointment = async (id) => {
     try {
-      const response = await simpleDelete(`/api/appointment/delete/${id}`);
+      const response = await simpleDelete(`http://localhost:8000/api/appointment/delete/${id}`);
       swalWithBootstrapButtons.fire({
         title: '¿Está seguro de que quiere eliminar esta cita?',
         text: "No podra deshaver esta acción",
