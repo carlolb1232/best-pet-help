@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PetForm from '../components/PetForm';
 import { useUser } from "../contexts/userContext";
 import { simplePost } from '../services/simplePost';
+import Swal from 'sweetalert2'
 
 const CreatePet = () => {
 
@@ -21,6 +22,13 @@ const CreatePet = () => {
       if (response.data.message === "") {
         setUser({...user})
         navigate("/pets")
+        Swal.fire({
+          // position: 'top-end',
+          icon: "success",
+          title: "Mascota creada",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
         const errorResponse = response.data.errors; // Get the errors from err.response.data
         const errorArr = []; // Define a temp error array to push the messages in
@@ -39,6 +47,7 @@ const CreatePet = () => {
     <div className='forms-container'>
       {errors.map((err, index) => <div className="alert alert-danger" role="alert" key={index}>{err}</div>)}
       <div className="container">
+        <h2 className='change-text'>Registro de Nueva Mascota</h2>
         <PetForm nickName="" age="" specie="" race="" onSubmitProp={createPet} />
       </div>
     </div>

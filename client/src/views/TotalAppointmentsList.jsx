@@ -3,6 +3,7 @@ import { simpleGet } from "../services/simpleGet";
 import moment from 'moment';
 import { useNavigate } from "react-router-dom";
 import { simpleDelete } from "../services/simpleDelete";
+import Swal from 'sweetalert2'
 
 const TotalAppointmentsList = () => {
 
@@ -13,6 +14,14 @@ const TotalAppointmentsList = () => {
   const [appointments, setAppointments] = useState([]);
   const [appointmentsSort, setAppointmentsSort] = useState([]);
   
+
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
 
   const getAllPets = async () => {
     try {
@@ -44,8 +53,34 @@ const TotalAppointmentsList = () => {
   const deleteAppointment = async (id) => {
     try {
       const response = await simpleDelete(`/api/appointment/delete/${id}`);
-      console.log(response.data)
-      setAppointments((oldAppointments)=>oldAppointments.filter(appointment=>appointment._id !== id))
+      swalWithBootstrapButtons.fire({
+        title: '¿Está seguro de que quiere eliminar esta cita?',
+        text: "No podra deshaver esta acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'BORRAR',
+        cancelButtonText: '¡No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Eliminado',
+            'La cita ha sido eliminada.',
+            'success'
+            )
+            console.log(response.data)
+            setAppointments((oldAppointments)=>oldAppointments.filter(appointment=>appointment._id !== id))
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Acción cancelada',
+            'Volviendo a la lista de citas',
+            'error'
+          )
+        }
+      })
     } catch (err) {
       console.log(err)
     }

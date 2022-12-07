@@ -25,7 +25,7 @@ const PetsList = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-5">
+      <h2 className="mb-5 change-text">
       {user.names} {user.lastName}, seleccione la mascota a cual sacar la cita:
       </h2>
       <div className="pets-container">

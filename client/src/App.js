@@ -12,6 +12,7 @@ import AppointmentsList from "./views/AppointmentsList";
 import EditAppointment from "./views/EditAppointment";
 import TotalAppointmentsList from "./views/TotalAppointmentsList";
 import AppointmentDetail from "./views/AppointmentDetail";
+import CreateAdmin from "./views/CreateAdmin";
 
 function App() {
 
@@ -33,6 +34,8 @@ function App() {
           <Route path="/appointment/:id" element={<EditAppointment />} />
           <Route path="/appointment/detail/:id" element={<AppointmentDetail />} />
           <Route path="/appointment/pets" element={<TotalAppointmentsList />} />
+
+          <Route path="/create-admin" element={<CreateAdmin />} />
         </Routes>
       </UserProvider>
     </div>

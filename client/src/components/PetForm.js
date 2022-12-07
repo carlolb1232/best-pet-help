@@ -18,7 +18,7 @@ const PetForm = (props) => {
           nickName: Yup.string()
             .required("Por favor ingresa el nombre o apodo de la mascota"),
 
-          age: Yup.string()
+          age: Yup.number()
             .required("Por favor ingrese la edad"),
 
           specie: Yup.string()
@@ -43,14 +43,14 @@ const PetForm = (props) => {
         }) => {
           return (
             <div className='form-center'>
-              <h2>REGISTRO DE NUEVA MASCOTA</h2>
+              
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="nickName" className="col-sm-2 col-form-label">Nombre/Apodo</label>
                 <Field id='nickName' type="text" className="form-control" placeholder="Nombre/Apodo" name='nickName' />
                 {errors.nickName && touched.nickName && <p className={`alert alert-danger`}>{errors.nickName}</p>}
 
                 <label htmlFor="age" className="col-sm-2 col-form-label">Edad</label>
-                <Field id='age' type="text" placeholder="Edad" className="form-control" name='age' />
+                <Field id='age' type="number" placeholder="Edad" className="form-control" name='age' />
                 {errors.age && touched.age && <p className={`alert alert-danger`}>{errors.age}</p>}
 
                 <label htmlFor="specie" className="col-form-label">Especie</label>

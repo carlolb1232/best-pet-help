@@ -4,6 +4,7 @@ import AppointmentForm from '../components/AppointmentForm';
 import { simpleGet } from '../services/simpleGet';
 import { simplePut } from '../services/simplePut';
 import moment from 'moment';
+import Swal from 'sweetalert2'
 
 
 const EditAppointment = () => {
@@ -35,7 +36,24 @@ const EditAppointment = () => {
       const response = await simplePut(`/api/appointment/edit/${id}`, values);
       console.log(response.data);
       if (response.data.message === "") {
-        navigate("/");
+        Swal.fire({
+          title: '¿Seguro de editar la cita?',
+          text: "Volverá a un estado de espera",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, editar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              '¡Cita editada!',
+              'Su cita será revisada de nuevo dentro de poco.',
+              'success'
+            )
+            navigate("/appointments");
+          }
+        })
       } else {
         const errorResponse = response.data.errors; // Get the errors from err.response.data
         const errorArr = []; // Define a temp error array to push the messages in
@@ -53,7 +71,7 @@ const EditAppointment = () => {
   return (
     <div className="container">
       <div className="forms-container">
-      <h2>Editar cita para mascota: {appointment?.petName}</h2>
+      <h2 className='change-text'>Editar cita para mascota: {appointment?.petName}</h2>
       {errors.map((err, index) => (
         <div className="alert alert-danger" role="alert" key={index}>
           {err}

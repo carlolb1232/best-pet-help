@@ -4,6 +4,7 @@ import { useUser } from "../contexts/userContext";
 import { simpleGet } from "../services/simpleGet";
 import moment from 'moment';
 import { simpleDelete } from "../services/simpleDelete";
+import Swal from 'sweetalert2'
 
 
 const AppointmentsList = () => {
@@ -31,6 +32,13 @@ const AppointmentsList = () => {
   //     console.log(err);
   //   }
   // };
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
 
   useEffect(() => {
     user.pets.map(async (idPet, idx) => {
@@ -60,8 +68,34 @@ const AppointmentsList = () => {
   const deleteAppointment = async (id) => {
     try {
       const response = await simpleDelete(`/api/appointment/delete/${id}`);
+      swalWithBootstrapButtons.fire({
+        title: '¿Está seguro de que quiere eliminar esta cita?',
+        text: "No podra deshaver esta acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'BORRAR',
+        cancelButtonText: '¡No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Eliminado',
+            'Su cita ha sido eliminada.',
+            'success'
+            )
+            setCitas((oldCitas)=>oldCitas.filter(appointment=>appointment._id !== id))
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Acción cancelada',
+            'Volviendo a la lista de citas',
+            'error'
+          )
+        }
+      })
       console.log(response.data)
-      setCitas((oldCitas)=>oldCitas.filter(appointment=>appointment._id !== id))
     } catch (err) {
       console.log(err)
     }
@@ -71,7 +105,7 @@ const AppointmentsList = () => {
 
   return (
     <div className="container mt-5">
-      <h2>LISTAS DE CITAS</h2>
+      <h2 className="change-text">LISTAS DE CITAS</h2>
       <table className="table table-striped table-bordered border-dark table-light">
         <thead>
           <tr>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
 
   const { onSubmitProp } = props;
+  const navigate = useNavigate();
 
   return (
     <div >
@@ -37,7 +39,7 @@ const LoginForm = (props) => {
         }) => {
           return (
             <div className='form-center'>
-              <h2>LOGIN</h2>
+              <h2 className='change-text'>Login</h2>
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="email" className="col-form-label">Correo Electrónico</label>
                 <Field id='email' type="text" placeholder="Email" className={`form-control`} name='email' />
@@ -48,6 +50,11 @@ const LoginForm = (props) => {
                 {errors.password && touched.password && <p className={`alert alert-danger`}>{errors.password}</p>}
                 <br></br>
                 <button className='btn btn-primary btn-lg' type="submit" disabled={Object.values(errors).length > 0}>Login</button>
+                <div className='mt-3'>
+                  <p>Si no tienes cuenta, registrate aquí 👇</p>
+                  <button className="btn btn-success" onClick={()=>navigate("/register")}>Crear Cuenta</button>
+                </div>
+
               </Form>
             </div>
           );

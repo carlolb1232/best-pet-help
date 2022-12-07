@@ -4,6 +4,7 @@ import { simpleGet } from "../services/simpleGet";
 import moment from "moment";
 import { simplePut } from "../services/simplePut";
 import { useUser } from "../contexts/userContext";
+import Swal from 'sweetalert2'
 
 const AppointmentDetail = () => {
   const {user} = useUser();
@@ -22,6 +23,7 @@ const AppointmentDetail = () => {
       console.log("Appoitment", response.data.appointment);
       setAppointment(response.data.appointment);
       setHour(response.data.appointment.hour)
+      setObservacion(response.data.appointment.observacion)
     } catch (err) {
       console.log(err);
     }
@@ -49,6 +51,12 @@ const AppointmentDetail = () => {
     }
     updateHour(newHour)
     navigate("/appointment/pets")
+    Swal.fire({
+      icon: 'success',
+      title: 'La hora de la cieta fue establecida',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
   
   const handleSubmit2 = (e) => {
@@ -58,8 +66,25 @@ const AppointmentDetail = () => {
       status: "Observada",
       observacion:observacion
     }
-    updateHour(newObservacion)
-    navigate("/appointment/pets")
+    Swal.fire({
+      title: '¿Seguro de observar esta cita?',
+      text: "La cita tendra un estado de observado",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, observar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '¡Cita observada!',
+          'La cita tiene una observación.',
+          'success'
+          )
+          updateHour(newObservacion)
+          navigate("/appointment/pets")
+      }
+    })
   }
 
   useEffect(() => {
@@ -72,23 +97,23 @@ const AppointmentDetail = () => {
 
   return (
     <div className="container appointment-detail-container">
-      <h2 className="text-change">Detalles de la Cita</h2>
-      <h3 className="text-change">Nombre: {appointment?.petName}</h3>
-      <p className="text-change">Descripción:</p>
+      <h2 className="change-text">Detalles de la Cita</h2>
+      <h3 className="change-text">Nombre: {appointment?.petName}</h3>
+      <p className="change-text">Descripción:</p>
       <p>{appointment?.description}</p>
-      <p className="text-change">Fecha Solicitada:</p>
+      <p className="change-text">Fecha Solicitada:</p>
       <p>{moment(appointment?.date).add('days', 1).format("YYYY-MM-DD")}</p>
       {
         appointment?.observacion!=""&&
         <div className="observacion">
-          <p className="text-change">OBSERVACIÓN:</p>
+          <p className="change-text observacion">OBSERVACIÓN:</p>
           <p>{appointment?.observacion}</p>
         </div>
       }
       {
         appointment?.hour&&
         <div className="cita-hora">
-          <p className="text-change">HORA / INDICACIÓNES DE LA CITA:</p>
+          <p className="change-text cita-hora">Hora / Indicaciones de la cita:</p>
           <p>{appointment?.hour}</p>
         </div>
       }
@@ -113,7 +138,7 @@ const AppointmentDetail = () => {
               <label htmlFor="observacion" className="form-label">
                 OBSERVAR CITA U HORA
               </label>
-              <textarea name="observacion" className="form-control" onChange={(e)=>setObservacion(e.target.value)} />
+              <textarea name="observacion" className="form-control" value={observacion} onChange={(e)=>setObservacion(e.target.value)} />
             </div>
             <input
               type="submit"

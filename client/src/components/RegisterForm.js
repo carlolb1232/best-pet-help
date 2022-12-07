@@ -51,7 +51,7 @@ const RegisterForm = (props) => {
         }) => {
           return (
             <div className='form-center'>
-              <h2>REGISTRO</h2>
+              <h2 className='change-text'>Registro</h2>
               <Form className="contact" method="post" onSubmit={handleSubmit}>
                 <label htmlFor="names" className="col-sm-2 col-form-label">Nombres</label>
                 <Field id='names' type="text" className="form-control" placeholder="Nombres" name='names' />

@@ -71,18 +71,20 @@ const Main = () => {
         </button>
       </div>
       <div className="description-container">
-        <h2>Descripción</h2>
+        <h2>Instrucciones</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea esse
-          laborum ratione? Eius error odit reiciendis nobis, ducimus possimus
-          consequatur ut officiis sequi quia doloremque fugit deserunt ea iure,
-          dolore qui libero amet numquam rerum reprehenderit nesciunt?
-          Distinctio reprehenderit tempore dolor animi totam veritatis eos qui
-          officiis, est doloribus enim ducimus, velit, sequi sapiente labore sit
-          quo temporibus impedit veniam dolore maiores vel accusantium! Dolorem
-          ullam recusandae ea aperiam nemo in, commodi, nobis id at accusantium
-          natus quae, obcaecati quaerat quibusdam sit.
+          Bienvido a BEST PET HELP, tu gestor de citas de mascotas favorito. Con esta aplicación podras:
         </p>
+        <ul>
+          <li>Crear perfiles para tus mascotas</li>
+          <li>Crear citas para algún malestar de tus mascotas</li>
+          <li>Revisar el estatus de las citas de tus mascotas</li>
+          <li>Verificar indicaciones para las citas de tus mascotas</li>
+        </ul>
+        <p>
+          Si tienes alguna duda, sientete libre de revisar el manual de usuario:
+        </p>
+        <a className="manual" href="https://drive.google.com/file/d/12I0anyRq7IWVkOb_tnGReniMViNLdBqW/view?usp=share_link" target="__blank">👉MANUAL DE USUARIO👈</a>
       </div>
       <h2>Servicios</h2>
       <div className="services-container">

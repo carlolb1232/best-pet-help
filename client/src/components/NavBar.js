@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 import logout from "../services/logout";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
   const { user, setUser } = useUser();
@@ -10,13 +11,23 @@ const NavBar = () => {
   const logOut = async () => {
     const { success } = await logout();
     if (success) {
-      setUser(null);
-      navigate("/");
+      Swal.fire({
+        title: "¿Está seguro que quiere salir?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, salir",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Usted salio del sistema", "¡Vuelva pronto!", "success");
+          setUser(null);
+          navigate("/");
+        }
+      });
     } else {
       window.alert("Error. No se pude desloguear");
     }
-    // if (success)setUser(null)
-    // else window.alert("Error. No se pude desloguear")
   };
   return (
     <nav className="navbar navbar-expand-lg">
@@ -25,7 +36,7 @@ const NavBar = () => {
         <ul className="nav">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-              INICIO
+              Inicio
             </Link>
           </li>
           {!user && (
@@ -52,11 +63,13 @@ const NavBar = () => {
               >
                 {user.names} {user.lastName}
               </a>
-              {
-                user.rol==="dentist"&&
+              {user.rol === "dentist" && (
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to={"/appointment/pets"} className="dropdown-item item-dark">
+                    <Link
+                      to={"/appointment/pets"}
+                      className="dropdown-item item-dark"
+                    >
                       Ver citas totales
                     </Link>
                   </li>
@@ -66,9 +79,8 @@ const NavBar = () => {
                     </button>
                   </li>
                 </ul>
-              }
-              {
-                user.rol==="patient"&&
+              )}
+              {user.rol === "patient" && (
                 <ul className="dropdown-menu">
                   <li>
                     <Link to={"/pet"} className="dropdown-item">
@@ -91,7 +103,7 @@ const NavBar = () => {
                     </button>
                   </li>
                 </ul>
-              }
+              )}
             </li>
           )}
         </ul>

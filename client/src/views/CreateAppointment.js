@@ -4,6 +4,7 @@ import AppointmentForm from "../components/AppointmentForm";
 import { simpleGet } from "../services/simpleGet";
 import { simplePost } from "../services/simplePost";
 import moment from 'moment';
+import Swal from 'sweetalert2'
 
 
 const CreateAppointment = () => {
@@ -36,6 +37,13 @@ const CreateAppointment = () => {
       console.log(response.data);
       if (response.data.message === "") {
         navigate("/appointments");
+        Swal.fire({
+          // position: 'top-end',
+          icon: "success",
+          title: "Cita creada",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
         const errorResponse = response.data.errors; // Get the errors from err.response.data
         const errorArr = []; // Define a temp error array to push the messages in
@@ -53,7 +61,7 @@ const CreateAppointment = () => {
   return (
     <div className="container">
       <div className="forms-container">
-      <h2>Crear cita para mascota: {pet?.nickName}</h2>
+      <h2 className="change-text">Crear cita para mascota: {pet?.nickName}</h2>
       {errors.map((err, index) => (
         <div className="alert alert-danger" role="alert" key={index}>
           {err}
